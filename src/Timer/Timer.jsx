@@ -8,6 +8,8 @@ import {
 import logo from "../assets/time.png";
 import { useEffect, useRef, useState } from "react";
 import audio from "../assets/mixkit-arcade-retro-game-over-213.wav";
+
+
 const Timer = () => {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
@@ -67,46 +69,49 @@ const Timer = () => {
     setInput({ h: 0, m: 0, s: 0 });
   };
   return (
-    <div className="min-h-screen flex justify-center items-center text-white relative">
-      <div className="bg-gray-900 border border-gray-700 max-w-md w-full shadow-2xl shadow-amber-950 rounded-2xl px-4 md:px-6 py-4">
+    <div className="min-h-screen flex justify-center items-center  relative p-4">
+      <div className="bg-[#7AB2B2]/10 max-w-md w-full shadow-2xl  rounded-2xl px-4 md:px-6 py-4">
         <img
           src={logo}
           alt=""
-          className="w-24 h-24 mx-auto bg-gray-200 rounded-full mb-3  animate-pulse"
+          className="w-32 h-32 mx-auto rounded-full mb-3 animate-bounce [animation-duration:3s]"
         />
-        <h1 className="text-center front-bold text-3xl mb-6">
+        <h1 className="text-center text-[#EBF4F6] front-bold text-3xl md:text-4xl mb-6">
           Smart Tickle Timer
         </h1>
         <div>
           {/* time setting */}
-          <div className="flex gap-2 justify-center mb-4">
+          <div className="flex gap-2 justify-center text-[#EBF4F6] mb-4">
             <input
               type="number"
               placeholder="HH"
+               value={input.h}
               onChange={(e) => setInput({ ...input, h: +e.target.value })}
-              className="w-16 px-2 py-1 rounded border border-white"
+              className="w-16 px-2 py-1 rounded border border-white/50"
             />
             <input
               type="number"
               placeholder="MM"
+               value={input.m}
               onChange={(e) => setInput({ ...input, m: +e.target.value })}
-              className="w-16 px-2 py-1 rounded border border-white"
+              className="w-16 px-2 py-1 rounded border border-white/50"
             />
             <input
               type="number"
               placeholder="SS"
+               value={input.s}
               onChange={(e) => setInput({ ...input, s: +e.target.value })}
-              className="w-16 px-2 py-1 rounded border border-white"
+              className="w-16 px-2 py-1 rounded border border-white/50"
             />
             <button
               onClick={handleSetTime}
-              className="px-3 py-1 bg-blue-500 rounded"
+              className="px-3 py-1 bg-sky-500 rounded"
             >
               Set Time
             </button>
           </div>
           {/* display timer */}
-          <div className="text-4xl font-bold text-center my-12 tracking-widest font-mono">
+          <div className="text-4xl font-bold text-center my-12 tracking-widest font-mono text-white">
             {formatTime()}
           </div>
           {/* controler */}
@@ -135,17 +140,17 @@ const Timer = () => {
             </button>
           </div>
           {/* mode */}
-          <p className="mt-4 text-lg opacity-70 text-center flex gap-2 justify-center">
+          <p className="mt-4 text-xl opacity-70 text-center flex gap-2 justify-center text-white">
             Mode:{" "}
             {isCountdown ? (
               <p className="flex items-center gap-2">
                 Countdown
-                <FaHourglassHalf />
+                <FaHourglassHalf className=" animate-spin [animation-duration:3s]"/>
               </p>
             ) : (
               <p className="flex items-center gap-2">
                 Stopwatch
-                <FaStopwatch />
+                <FaStopwatch className="animate-pulse [animation-duration:2s]"/>
               </p>
             )}
           </p>
